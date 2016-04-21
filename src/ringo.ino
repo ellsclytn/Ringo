@@ -1,5 +1,5 @@
-const short LED_COUNT = 8;
-const short LEDS[8] = {2, 3, 4, 5, 6, 7, 8, 9};
+const short LED_COUNT = 2;
+const short LEDS[LED_COUNT] = {2, 3};
 
 void setup() {
   for (short i = 0; i < LED_COUNT; i++) {
@@ -8,7 +8,7 @@ void setup() {
 }
 
 void loop() {
-  blinkLoop(1500);
+  blinkLoop(750);
 }
 
 void blinkLoop(short rate) {
