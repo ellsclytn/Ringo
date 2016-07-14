@@ -8,13 +8,13 @@ void setup() {
 }
 
 void loop() {
-  blinkLoop(750);
+  blinkLoop(902.255638);
 }
 
-void blinkLoop(short rate) {
-  for (short i = 0; i < LED_COUNT; i++) {
-    digitalWrite(LEDS[i], HIGH);
-    delay((short) (rate / LED_COUNT));
-    digitalWrite(LEDS[i], LOW);
-  }
+void blinkLoop(double rate) {
+    int randNumber = random(0,2);
+    digitalWrite(LEDS[randNumber], HIGH);
+    delay((short) (rate / LED_COUNT - 50));
+    digitalWrite(LEDS[randNumber], LOW);
+    delay(50);
 }
