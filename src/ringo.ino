@@ -70,10 +70,6 @@ void dismissMessage() {
   digitalWrite(LEDS[0], LOW);
   digitalWrite(LEDS[1], LOW);
 
-  tone(BUZZER_PIN, 1320, 100);
-  delay(200);
-  tone(BUZZER_PIN, 880, 100);
-
   prOpen = false;
   beeped = false;
 }
