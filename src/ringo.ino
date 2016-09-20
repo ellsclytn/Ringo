@@ -111,5 +111,7 @@ void loop() {
   if (prOpen) {
     alertPr();
   }
+
+  delay(100);
 }
 
