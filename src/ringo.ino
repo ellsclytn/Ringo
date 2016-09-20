@@ -25,9 +25,9 @@ void setup_wifi() {
 
   randomSeed(micros());
 
-  Serial.println("");
+  Serial.println();
   Serial.println("WiFi connected");
-  Serial.println("IP address: ");
+  Serial.print("IP address: ");
   Serial.println(WiFi.localIP());
 }
 
