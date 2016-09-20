@@ -1,1 +1,4 @@
 .pioenvs
+.piolibdeps
+src/env.h
+
