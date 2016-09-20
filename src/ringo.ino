@@ -45,6 +45,7 @@ void handleMsg(char* topic, byte* payload, unsigned int length) {
 
   if ((char)payload[0] == '1') {
     prOpen = true;
+    beeped = false;
   }
 }
 
