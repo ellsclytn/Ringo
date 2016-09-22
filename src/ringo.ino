@@ -13,7 +13,6 @@ const byte BUZZER_PIN      = 5;
 long ledSwitchTime = 0;
 bool prOpen        = false;
 bool led1On        = false;
-bool beeped        = false;
 
 void setupWifi() {
   WiFi.disconnect(true);
@@ -48,7 +47,7 @@ void handleMsg(char* topic, byte* payload, unsigned int length) {
 
   if ((char)payload[0] == '1') {
     prOpen = true;
-    beeped = false;
+    beep();
   }
 }
 
@@ -74,17 +73,15 @@ void dismissMessage() {
   digitalWrite(LEDS[1], LOW);
 
   prOpen = false;
-  beeped = false;
 }
 
-void alertPr() {
-  if (!beeped) {
-    tone(BUZZER_PIN, 880, 100);
-    delay(200);
-    tone(BUZZER_PIN, 1320, 100);
-    beeped = true;
-  }
+void beep() {
+  tone(BUZZER_PIN, 880, 100);
+  delay(200);
+  tone(BUZZER_PIN, 1320, 100);
+}
 
+void blink() {
   if (millis() >= ledSwitchTime) {
     ledSwitchTime = millis() + BLINK_DELAY;
     led1On = !led1On;
@@ -124,7 +121,7 @@ void loop() {
   }
 
   if (prOpen) {
-    alertPr();
+    blink();
   }
 
   delay(100);
