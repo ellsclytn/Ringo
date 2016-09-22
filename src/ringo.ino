@@ -16,6 +16,9 @@ bool led1On        = false;
 bool beeped        = false;
 
 void setupWifi() {
+  WiFi.disconnect(true);
+  delay(500);
+
   Serial.print("Connecting to: ");
   Serial.println(SSID);
 
