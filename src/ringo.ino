@@ -8,12 +8,16 @@ PubSubClient client(espClient);
 const short BLINK_DELAY    = 500;
 const byte LED_COUNT       = 2;
 const byte LEDS[LED_COUNT] = {12, 13};
+const byte BUZZER_PIN      = 5;
 
 long ledSwitchTime = 0;
 bool prOpen        = false;
 bool led1On        = false;
 
 void setupWifi() {
+  WiFi.disconnect(true);
+  delay(500);
+
   Serial.print("Connecting to: ");
   Serial.println(SSID);
 
@@ -43,6 +47,7 @@ void handleMsg(char* topic, byte* payload, unsigned int length) {
 
   if ((char)payload[0] == '1') {
     prOpen = true;
+    beep();
   }
 }
 
@@ -66,10 +71,17 @@ void reconnect() {
 void dismissMessage() {
   digitalWrite(LEDS[0], LOW);
   digitalWrite(LEDS[1], LOW);
+
   prOpen = false;
 }
 
-void alertPr() {
+void beep() {
+  tone(BUZZER_PIN, 880, 100);
+  delay(200);
+  tone(BUZZER_PIN, 1320, 100);
+}
+
+void blink() {
   if (millis() >= ledSwitchTime) {
     ledSwitchTime = millis() + BLINK_DELAY;
     led1On = !led1On;
@@ -109,7 +121,7 @@ void loop() {
   }
 
   if (prOpen) {
-    alertPr();
+    blink();
   }
 
   delay(100);
